@@ -1,0 +1,23 @@
+# Chapter11Problem
+import java.util.ArrayList;
+import java.util.Scanner;
+public class main_18 {
+
+	public static void main(String[] args) {
+		System.out.print("Enter a String: ");
+		Scanner input = new Scanner(System.in);
+		String string = input.next();
+		ArrayList<Character> list = new ArrayList<>();
+		list = toCharacterArray(string);
+		System.out.println(list.toString());
+	}
+	
+	public static ArrayList<Character> toCharacterArray(String s){
+		char[] charArray = s.toCharArray();
+		ArrayList<Character> list = new ArrayList<>();
+		for(int i=0;i<s.length();++i) {
+			list.add(charArray[i]);
+		}
+		return list;
+	}
+}
