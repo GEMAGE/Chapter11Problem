@@ -1,0 +1,60 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class main_9 {
+
+	public static void main(String[] args) {
+		System.out.print("Enter the array size n: ");
+		Scanner input=new Scanner(System.in);
+		int n = input.nextInt();
+		
+		//将数据存入数组
+		System.out.println("The random array is");
+		char[][] charArray = new char[n][n];
+		for(int i=0;i<n;++i) {
+			String string = input.next();
+			for(int j=0;j<n;++j) {
+				charArray[i][j]=string.charAt(j);
+			}
+		}
+
+		//行“1”最大数
+		int max = 0;
+		ArrayList<Integer> rowMaxCountList = new ArrayList<Integer>();
+		for(int i=0;i<n;++i) {
+			int count=0;
+			for(int j=0;j<n;++j) {
+				if(charArray[i][j]=='1')count++;
+			}
+			if(max<count) {
+				max=count;
+				rowMaxCountList.clear();
+			}
+			if(max==count)rowMaxCountList.add(i);
+		}
+		System.out.print("The largest row index: ");
+		while(rowMaxCountList.size()!=0) {
+			if(rowMaxCountList.size()!=1)System.out.print(rowMaxCountList.remove(0)+", ");
+			else System.out.println(rowMaxCountList.remove(0));
+		}
+		
+		max = 0;
+		ArrayList<Integer> columnMaxCountList = new ArrayList<Integer>();
+		for(int i=0;i<n;++i) {
+			int count=0;
+			for(int j=0;j<n;++j) {
+				if(charArray[j][i]=='1')count++;
+			}
+			if(max<count) {
+				max=count;
+				columnMaxCountList.clear();
+			}
+			if(max==count)columnMaxCountList.add(i);
+		}
+		System.out.print("The largest column index: ");
+		while(columnMaxCountList.size()!=0) {
+			if(columnMaxCountList.size()!=1)System.out.print(columnMaxCountList.remove(0)+", ");
+			else System.out.println(columnMaxCountList.remove(0));
+		}
+	}
+
+}
