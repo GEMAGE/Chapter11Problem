@@ -1,0 +1,41 @@
+# Chapter11Problem
+import java.util.Scanner;
+import java.util.ArrayList;
+public class main_15 {
+
+	public static void main(String[] args) {
+		System.out.print("Enter the number of points: ");
+		Scanner input=new Scanner(System.in);
+		int numberOfPoints = input.nextInt();
+		
+		System.out.println("Enter the coordinates of the points:");
+		ArrayList<Double> list = new ArrayList<Double>();
+		for(int i=0;i<numberOfPoints*2;++i)list.add(input.nextDouble());
+		
+		//选一个点作为所有三角形的共同顶点
+		double fixedPointX = list.remove(0); 
+		double fixedPointY = list.remove(0);
+		double point1X, point1Y;
+		double point2X, point2Y;
+		double area=0;
+		double p; //三角形的半周长
+		double a; //三角形的一条边长
+		double b;
+		double c;
+		
+		while(list.size()!=2) { //2:最后一个顶点无法被remove出来
+			point1X=list.remove(0);
+			point1Y=list.remove(0);
+			point2X=list.get(0);
+			point2Y=list.get(1);
+			a=Math.sqrt(Math.pow((fixedPointX-point1X), 2)+Math.pow((fixedPointY-point1Y),2));
+			b=Math.sqrt(Math.pow((fixedPointX-point2X), 2)+Math.pow((fixedPointY-point2Y),2));
+			c=Math.sqrt(Math.pow((point2X-point1X), 2)+Math.pow((point2Y-point1Y),2));
+			p=(a+b+c)/2;
+			area = area + Math.sqrt(p*(p-a)*(p-b)*(p-c));
+		}
+	
+		System.out.print("The total area is "+area);
+	}
+
+}
